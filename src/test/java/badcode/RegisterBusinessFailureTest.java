@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegisterBusinessTest {
+class RegisterBusinessFailureTest {
 
     @Test
     @DisplayName("Firstname ของ speaker มีค่าเป็น null จึงเกิด exception ขึ้นมา")
@@ -93,30 +93,6 @@ class RegisterBusinessTest {
 
         Exception exception = assertThrows(SaveSpeakerException.class, () ->
                 registerBusiness.register(null, speaker));
-    }
-
-    @Test
-    @DisplayName("save speaker ได้")
-    public void case07 (){
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        Speaker speaker = new Speaker();
-        speaker.setFirstName("Weerayooth");
-        speaker.setLastName("Manawanich");
-        speaker.setEmail("test@gmail.com");
-
-        SpeakerRepository speakerRepository = (speaker1) -> 1;
-        int speakerId = registerBusiness.register(speakerRepository, speaker);
-
-        assertEquals(1,speakerId);
-
-    }
-
-    @Test
-    @DisplayName("test get Fee method")
-    public void case08 (){
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        int fee = registerBusiness.getFee(5);
-        assertEquals(100,fee);
     }
 
 }
