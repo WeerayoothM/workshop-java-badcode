@@ -11,7 +11,7 @@ class RegisterBusinessSuccessTest {
     // Success case
     @Test
     @DisplayName("save speaker ได้")
-    public void case07 (){
+    public void case01 (){
         RegisterBusiness registerBusiness = new RegisterBusiness();
         Speaker speaker = new Speaker();
         speaker.setFirstName("Weerayooth");
@@ -27,14 +27,6 @@ class RegisterBusinessSuccessTest {
 
         assertEquals(1,speakerId);
 
-    }
-
-    @Test
-    @DisplayName("test get Fee method")
-    public void case08 (){
-        RegisterBusiness registerBusiness = new RegisterBusiness();
-        int fee = registerBusiness.getFee(5);
-        assertEquals(100,fee);
     }
 
 }
