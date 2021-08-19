@@ -69,4 +69,18 @@ class RegisterBusinessTest {
                 registerBusiness.register(null, speaker));
     }
 
+    @Test
+    @DisplayName("ไม่สามารถ save speaker ได้")
+    public void case06 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+        speaker.setLastName("Manawanich");
+        speaker.setEmail("test@gmail.com");
+
+        Exception exception = assertThrows(SaveSpeakerException.class, () ->
+                registerBusiness.register(null, speaker));
+    }
+
+
 }
