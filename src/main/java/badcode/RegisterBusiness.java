@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class RegisterBusiness {
 
     public Integer register(SpeakerRepository repository, Speaker speaker) {
+
         Integer speakerId;
         String[] domains = {"gmail.com", "live.com"};
 
