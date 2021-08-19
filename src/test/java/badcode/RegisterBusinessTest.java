@@ -56,5 +56,17 @@ class RegisterBusinessTest {
         assertEquals("Speaker doesn't meet our standard rules.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("Email ของ speaker มี @ เกินมา จึงเกิด exception ขึ้นมา")
+    public void case05 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+        speaker.setLastName("Manawanich");
+        speaker.setEmail("test@gmail.com@asg");
+
+        Exception exception = assertThrows(DomainEmailInvalidException.class, () ->
+                registerBusiness.register(null, speaker));
+    }
 
 }
