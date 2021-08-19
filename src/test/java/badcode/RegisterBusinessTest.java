@@ -82,5 +82,20 @@ class RegisterBusinessTest {
                 registerBusiness.register(null, speaker));
     }
 
+    @Test
+    @DisplayName("save speaker ได้")
+    public void case07 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+        speaker.setLastName("Manawanich");
+        speaker.setEmail("test@gmail.com");
+
+        SpeakerRepository speakerRepository = (speaker1) -> 1;
+        int speakerId = registerBusiness.register(speakerRepository, speaker);
+
+        assertEquals(1,speakerId);
+
+    }
 
 }
