@@ -41,4 +41,20 @@ class RegisterBusinessTest {
                 registerBusiness.register(null, speaker));
         assertEquals("Email is required.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("Email ของ speaker มีรูปแบบ ไม่ถูกต้อง จึงเกิด exception ขึ้นมา")
+    public void case04 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+        speaker.setLastName("Manawanich");
+        speaker.setEmail("test@test.com");
+
+        Exception exception = assertThrows(SpeakerDoesntMeetRequirementsException.class, () ->
+                registerBusiness.register(null, speaker));
+        assertEquals("Speaker doesn't meet our standard rules.", exception.getMessage());
+    }
+
+
 }
