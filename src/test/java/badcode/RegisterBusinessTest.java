@@ -70,6 +70,19 @@ class RegisterBusinessTest {
     }
 
     @Test
+    @DisplayName("Email ของ speaker ไม่มี @ จึงเกิด exception ขึ้นมา")
+    public void case051 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+        speaker.setLastName("Manawanich");
+        speaker.setEmail("test.gmail.com");
+
+        Exception exception = assertThrows(DomainEmailInvalidException.class, () ->
+                registerBusiness.register(null, speaker));
+    }
+
+    @Test
     @DisplayName("ไม่สามารถ save speaker ได้")
     public void case06 (){
         RegisterBusiness registerBusiness = new RegisterBusiness();
@@ -96,6 +109,14 @@ class RegisterBusinessTest {
 
         assertEquals(1,speakerId);
 
+    }
+
+    @Test
+    @DisplayName("test get Fee method")
+    public void case08 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        int fee = registerBusiness.getFee(5);
+        assertEquals(100,fee);
     }
 
 }
