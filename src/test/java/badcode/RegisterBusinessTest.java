@@ -16,4 +16,16 @@ class RegisterBusinessTest {
                 registerBusiness.register(null, new Speaker()));
         assertEquals("First name is required.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("Lastname ของ speaker มีค่าเป็น null จึงเกิด exception ขึ้นมา")
+    public void case02 (){
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("Weerayooth");
+
+        Exception exception = assertThrows(ArgumentNullException.class, () ->
+                registerBusiness.register(null, speaker));
+        assertEquals("Last name is required.", exception.getMessage());
+    }
 }
