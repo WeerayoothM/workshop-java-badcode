@@ -7,22 +7,20 @@ public class RegisterBusiness {
     public Integer register(SpeakerRepository repository, Speaker speaker) {
 
         Integer speakerId;
-        String[] domains = {"gmail.com", "live.com"};
 
-        if (!haveValue(speaker.getFirstName())) {
+        if (isEmpty(speaker.getFirstName())) {
             throw new ArgumentNullException("First name is required.");
         }
 
-        if (!haveValue(speaker.getLastName())) {
+        if (isEmpty(speaker.getLastName())) {
             throw new ArgumentNullException("Last name is required.");
         }
 
-        if (!haveValue(speaker.getEmail())) {
+        if (isEmpty(speaker.getEmail())) {
             throw new ArgumentNullException("Email is required.");
         }
 
-        String emailDomain = getEmailDomain(speaker.getEmail()); // Avoid ArrayIndexOutOfBound
-        if (isValidEmail(domains, emailDomain)) {
+        if (isValidEmailDomain(speaker.getEmail())) {
             throw new SpeakerDoesntMeetRequirementsException("Speaker doesn't meet our standard rules.");
         }
 
@@ -37,12 +35,14 @@ public class RegisterBusiness {
         return speakerId;
     }
 
-    private boolean isValidEmail(String[] domains, String emailDomain) {
-        return Arrays.stream(domains).filter(it -> it.equals(emailDomain)).count() != 1;
+    private boolean isValidEmailDomain( String email) {
+        String[] domainsOfEmail = {"gmail.com", "live.com"};
+        String emailDomain = getEmailDomain(email); // Avoid ArrayIndexOutOfBound
+        return Arrays.stream(domainsOfEmail).filter(it -> it.equals(emailDomain)).count() != 1;
     }
 
-    private boolean haveValue(String value){
-        return value != null && !value.trim().equals("");
+    private boolean isEmpty(String value){
+        return value == null || value.trim().equals("");
     }
 
     int getFee(int experienceYear) {
